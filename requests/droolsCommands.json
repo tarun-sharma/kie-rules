@@ -1,0 +1,7 @@
+{
+  "commands" : [ 
+    { "insert" : { "object" : "Daman"   } }, 
+    { "insert" : { "object" : "Pahuja" } }, 
+    { "fire-all-rules" : { } }
+  ]
+}

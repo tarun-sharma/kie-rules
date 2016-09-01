@@ -1,0 +1,90 @@
+import com.sample.MaxLimit;
+
+rule "Dubai with platinum"
+	dialect "java"
+	no-loop
+	when
+		max : MaxLimit(country == "Dubai" , type == "Platinum", amount <= 50000)
+	then
+		System.out.println("hello, Dubai - Platinum - customer, you can buy");
+		max.setValid(true);
+		update(max);
+end
+
+rule "Dubai with gold"
+	dialect "java"
+	no-loop
+	when
+		m : MaxLimit(country == "Dubai" , type == "Gold", amount <= 30000)
+	then
+		System.out.println("hello, Dubai - Gold - customer, you can buy");
+		m.setValid(true);
+		update(m);
+end
+
+rule "Jordan with platinum"
+	dialect "java"
+	no-loop
+	when
+		max : MaxLimit(country == "Jordan" , type == "Platinum", amount <= 60000)
+	then
+		System.out.println("hello, Jordan - Platinum - customer, you can buy");
+		max.setValid(true);
+		update(max);
+end
+
+rule "Jordan with gold"
+	dialect "java"
+	no-loop
+	when
+		m : MaxLimit(country == "Jordan" , type == "Gold", amount <= 40000)
+	then
+		System.out.println("hello, Jordan - Gold - customer, you can buy");
+		m.setValid(true);
+		update(m);
+end
+
+
+rule "Dubai with platinum above limit"
+	dialect "java"
+	no-loop
+	when
+		max : MaxLimit(country == "Dubai" , type == "Platinum", amount > 50000)
+	then
+		System.out.println("hello, Dubai - Platinum - customer, you can't buy, Max Limit = 50000");
+		max.setValid(false);
+		update(max);
+end
+
+rule "Dubai with gold above limit"
+	dialect "java"
+	no-loop
+	when
+		m : MaxLimit(country == "Dubai" , type == "Gold", amount > 30000)
+	then
+		System.out.println("hello, Dubai - Gold - customer, you can't buy, Max Limit = 30000");
+		m.setValid(false);
+		update(m);
+end
+
+rule "Jordan with platinum above limit"
+	dialect "java"
+	no-loop
+	when
+		max : MaxLimit(country == "Jordan" , type == "Platinum", amount > 60000)
+	then
+		System.out.println("hello, Jordan - Platinum - customer, you can't buy, Max Limit = 60000");
+		max.setValid(false);
+		update(max);
+end
+
+rule "Jordan with gold above limit"
+	dialect "java"
+	no-loop
+	when
+		m : MaxLimit(country == "Jordan" , type == "Gold", amount > 40000)
+	then
+		System.out.println("hello, Jordan - Gold - customer, you can't buy, Max limit = 40000");
+		m.setValid(false);
+		update(m);
+end
